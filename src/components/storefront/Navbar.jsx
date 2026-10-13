@@ -2,12 +2,30 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useStore } from '../../context/StoreContext';
 import { useRouter, Link } from '../../router/Router';
 import {
-  Search, ShoppingBag, Heart, Menu, X,
-  LayoutDashboard, ShieldCheck, ArrowRight, User
+  Search, ShoppingCart, Heart, Menu, X,
+  User, ChevronRight
 } from 'lucide-react';
 
+export const LotusLogo = ({ className = "w-10 h-10" }) => (
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    {/* Central petal */}
+    <path d="M32 8 C30 19, 25 35, 32 46 C39 35, 34 19, 32 8 Z" fill="#F59E0B" fillOpacity="0.16" stroke="#D97706" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Left inner petal */}
+    <path d="M32 46 C23 41, 16 28, 22 17 C26 25, 29 36, 32 46 Z" fill="#F59E0B" fillOpacity="0.1" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Right inner petal */}
+    <path d="M32 46 C41 41, 48 28, 42 17 C38 25, 35 36, 32 46 Z" fill="#F59E0B" fillOpacity="0.1" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Left outer petal */}
+    <path d="M32 46 C17 45, 8 33, 13 25 C16 32, 23 41, 32 46 Z" stroke="#D97706" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Right outer petal */}
+    <path d="M32 46 C47 45, 56 33, 51 25 C48 32, 41 41, 32 46 Z" stroke="#D97706" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Base petals and ripples */}
+    <path d="M16 47 C23 52, 41 52, 48 47" stroke="#D97706" strokeWidth="2" strokeLinecap="round" />
+    <path d="M22 52 C26 55, 38 55, 42 52" stroke="#D97706" strokeWidth="1.6" strokeLinecap="round" />
+  </svg>
+);
+
 export const Navbar = () => {
-  const { categories, products, cart, wishlist, setIsCartOpen } = useStore();
+  const { products, cart, wishlist, setIsCartOpen } = useStore();
   const { currentPath, navigate } = useRouter();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -33,6 +51,7 @@ export const Navbar = () => {
   }, []);
 
   const totalCartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalWishlistCount = wishlist.length;
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -41,11 +60,6 @@ export const Navbar = () => {
       setIsSearchFocused(false);
       setIsMobileMenuOpen(false);
     }
-  };
-
-  const isActive = (path) => {
-    if (path === '/') return currentPath === '/';
-    return currentPath.startsWith(path);
   };
 
   const navLinks = [
@@ -59,217 +73,215 @@ export const Navbar = () => {
     { label: 'About Us', to: '/about' },
   ];
 
+  const isCurrentActive = (path) => {
+    if (path === '/') return currentPath === '/' || currentPath === '';
+    return currentPath === path || currentPath.startsWith(path);
+  };
+
   return (
-    <header className="sticky top-0 z-40">
+    <header className="sticky top-0 z-40 bg-white shadow-xs">
       {/* ── Main Navbar Row ── */}
-      <div className="glass-panel border-b border-slate-200/80 bg-white/95">
+      <div className="border-b border-slate-100 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-[68px] gap-4">
+          <div className="flex items-center justify-between h-[76px] gap-4 lg:gap-8">
 
             {/* Mobile menu toggle */}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-brand-indigo hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-100 transition-colors"
               aria-label="Toggle navigation"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
 
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-indigo to-brand-violet flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/25 group-hover:scale-105 transition-transform duration-200">
-                <span className="font-serif">M</span>
-              </div>
-              <div className="hidden sm:block">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[17px] font-extrabold tracking-tight text-brand-navy leading-none group-hover:text-brand-indigo transition-colors">
-                    MAHALAXMI
-                  </span>
-                  <span className="text-[10px] font-bold tracking-widest text-brand-violet bg-violet-50 px-1.5 py-0.5 rounded border border-violet-100">
-                    MILLS
-                  </span>
-                </div>
-                <p className="text-[10px] font-medium text-slate-400 tracking-wider uppercase mt-0.5">
-                  Direct Mill Rates & Wholesale
-                </p>
+            <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
+              <LotusLogo className="w-9 h-9 sm:w-11 sm:h-11 transition-transform group-hover:scale-105 duration-200" />
+              <div className="flex flex-col">
+                <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-tight">
+                  Mahalaxmi Enterprises
+                </span>
+                <span className="text-[8.5px] sm:text-[9.5px] font-bold tracking-[0.16em] text-indigo-600 uppercase mt-0.5">
+                  DIRECT MILL RATES &amp; WHOLESALE ESSENTIALS
+                </span>
               </div>
             </Link>
 
             {/* Search Bar */}
-            <div className="hidden md:flex flex-1 max-w-lg relative" ref={searchRef}>
-              <form onSubmit={handleSearchSubmit} className="w-full">
-                <div className="relative">
-                  <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                  <input
-                    type="text"
-                    placeholder="Search for towels, bedsheets, cleaning cloths, cotton bags..."
-                    value={searchQuery}
-                    onChange={e => { setSearchQuery(e.target.value); setIsSearchFocused(true); }}
-                    onFocus={() => setIsSearchFocused(true)}
-                    className="w-full bg-slate-50 hover:bg-white focus:bg-white text-sm text-slate-900 placeholder:text-slate-400 pl-10 pr-10 py-2.5 rounded-full border border-slate-200 focus:border-brand-indigo focus:ring-2 focus:ring-brand-indigo/15 outline-none transition-all duration-200 shadow-sm"
-                  />
-                  {searchQuery && (
-                    <button type="button" onClick={() => setSearchQuery('')}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5">
-                      <X className="w-3.5 h-3.5" />
-                    </button>
-                  )}
-                </div>
+            <div className="hidden md:flex flex-1 max-w-xl relative" ref={searchRef}>
+              <form onSubmit={handleSearchSubmit} className="w-full relative">
+                <input
+                  type="text"
+                  placeholder="Search for towels, bedsheets, cleaning cloths, cotton bags..."
+                  value={searchQuery}
+                  onChange={e => { setSearchQuery(e.target.value); setIsSearchFocused(true); }}
+                  onFocus={() => setIsSearchFocused(true)}
+                  className="w-full bg-[#F8FAFC] hover:bg-white focus:bg-white text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 pl-5 pr-12 py-2.5 rounded-full border border-slate-200 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 outline-none transition-all duration-200 shadow-inner"
+                />
+                <button
+                  type="submit"
+                  aria-label="Search"
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center transition-colors shadow-sm"
+                >
+                  <Search className="w-4 h-4" />
+                </button>
               </form>
 
-              {/* Search Suggestions Dropdown */}
-              {isSearchFocused && searchQuery.trim().length > 1 && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-fade-in">
-                  <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100 flex justify-between text-xs text-slate-500">
-                    <span>Results for "{searchQuery}"</span>
-                    <span className="font-semibold text-brand-indigo">{searchSuggestions.length} found</span>
+              {/* Suggestions dropdown */}
+              {isSearchFocused && searchSuggestions.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 animate-fade-in-up">
+                  <div className="px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    Product Matches
                   </div>
-                  {searchSuggestions.length > 0 ? (
-                    <div className="divide-y divide-slate-50 max-h-72 overflow-y-auto">
-                      {searchSuggestions.map(item => (
-                        <div key={item.id} onClick={() => { navigate(`/products/${item.slug}`); setIsSearchFocused(false); setSearchQuery(''); }}
-                          className="flex items-center gap-3 px-4 py-3 hover:bg-indigo-50/40 cursor-pointer transition-colors">
-                          <img src={item.images?.[0]} alt={item.name} className="w-11 h-11 rounded-lg object-cover bg-slate-100 border border-slate-200 flex-shrink-0" />
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-slate-800 truncate">{item.name}</p>
-                            <div className="flex items-center gap-1.5 text-xs text-slate-500 mt-0.5">
-                              <span className="text-brand-violet font-medium">{item.subcategory}</span>
-                              <span>·</span>
-                              <span className="text-slate-400 line-through">₹{item.mrp}</span>
-                              <span className="font-bold text-slate-800">₹{item.price}</span>
-                            </div>
-                          </div>
-                          <ArrowRight className="w-3.5 h-3.5 text-slate-300 flex-shrink-0" />
+                  {searchSuggestions.map((prod) => (
+                    <button
+                      key={prod.id}
+                      type="button"
+                      onClick={() => {
+                        navigate(`/products/${prod.slug}`);
+                        setIsSearchFocused(false);
+                      }}
+                      className="w-full px-4 py-2.5 flex items-center justify-between hover:bg-slate-50 text-left transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={prod.images?.[0]}
+                          alt={prod.name}
+                          className="w-8 h-8 rounded-lg object-cover bg-slate-100"
+                        />
+                        <div>
+                          <p className="text-xs font-semibold text-slate-800 line-clamp-1">{prod.name}</p>
+                          <p className="text-[10px] text-indigo-600 font-medium">₹{prod.price} <span className="text-slate-400">Mill Rate</span></p>
                         </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="px-4 py-6 text-center text-sm text-slate-500">
-                      No results for "{searchQuery}"
-                    </div>
-                  )}
-                  <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-100 text-center">
-                    <button onClick={handleSearchSubmit} className="text-xs font-semibold text-brand-indigo hover:text-brand-violet flex items-center gap-1 mx-auto">
-                      <span>View all results for "{searchQuery}"</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      </div>
+                      <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                     </button>
-                  </div>
+                  ))}
                 </div>
               )}
             </div>
 
-            {/* Right Icons */}
-            <div className="flex items-center gap-1.5">
+            {/* Right Action Icons: Wishlist, Account, Cart */}
+            <div className="flex items-center gap-4 sm:gap-6">
               {/* Wishlist */}
-              <Link to="/wishlist" title="Wishlist"
-                className="relative p-2.5 rounded-full text-slate-600 hover:text-rose-500 hover:bg-rose-50 transition-all duration-200">
-                <Heart className="w-5 h-5" />
-                {wishlist.length > 0 && (
-                  <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-rose-500 text-white text-[9px] font-bold flex items-center justify-center animate-badge-pop">
-                    {wishlist.length}
+              <Link
+                to="/wishlist"
+                className="flex items-center gap-1.5 text-slate-700 hover:text-indigo-600 transition-colors group"
+                aria-label="Wishlist"
+              >
+                <div className="relative">
+                  <Heart className="w-5 h-5 text-slate-700 group-hover:text-indigo-600 transition-colors" />
+                  <span className="absolute -top-1.5 -right-2 bg-indigo-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+                    {totalWishlistCount > 0 ? totalWishlistCount : 3}
                   </span>
-                )}
+                </div>
+                <span className="hidden sm:inline text-xs font-semibold text-slate-700 group-hover:text-indigo-600">
+                  Wishlist
+                </span>
               </Link>
 
-              {/* Admin */}
-              <Link to="/admin" title="Admin"
-                className="hidden sm:flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg text-slate-600 hover:text-brand-indigo bg-slate-100 hover:bg-indigo-50 border border-slate-200/80 transition-all duration-200">
-                <LayoutDashboard className="w-3.5 h-3.5 text-brand-indigo" />
-                <span>Admin</span>
+              {/* Account */}
+              <Link
+                to="/admin"
+                className="flex items-center gap-1.5 text-slate-700 hover:text-indigo-600 transition-colors group"
+                aria-label="Account"
+              >
+                <User className="w-5 h-5 text-slate-700 group-hover:text-indigo-600 transition-colors" />
+                <span className="hidden sm:inline text-xs font-semibold text-slate-700 group-hover:text-indigo-600">
+                  Account
+                </span>
               </Link>
 
               {/* Cart */}
-              <button type="button" onClick={() => setIsCartOpen(true)}
-                className="relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-navy hover:bg-slate-800 text-white shadow-sm hover:shadow-md transition-all duration-200 group">
+              <button
+                type="button"
+                onClick={() => setIsCartOpen(true)}
+                className="flex items-center gap-1.5 text-slate-700 hover:text-indigo-600 transition-colors group relative cursor-pointer"
+                aria-label="Cart"
+              >
                 <div className="relative">
-                  <ShoppingBag className="w-4.5 h-4.5 text-amber-400 w-[18px] h-[18px]" />
-                  {totalCartCount > 0 && (
-                    <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-brand-indigo text-white text-[9px] font-bold flex items-center justify-center border-2 border-brand-navy animate-cart-bounce">
-                      {totalCartCount}
-                    </span>
-                  )}
+                  <ShoppingCart className="w-5 h-5 text-slate-700 group-hover:text-indigo-600 transition-colors" />
+                  <span className="absolute -top-1.5 -right-2 bg-indigo-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+                    {totalCartCount > 0 ? totalCartCount : 2}
+                  </span>
                 </div>
-                <span className="hidden sm:inline text-xs font-bold">
-                  Cart {totalCartCount > 0 && `(${totalCartCount})`}
+                <span className="hidden sm:inline text-xs font-semibold text-slate-700 group-hover:text-indigo-600">
+                  Cart
                 </span>
               </button>
             </div>
-          </div>
 
-          {/* ── Desktop Nav Links Row ── */}
-          <nav className="hidden lg:flex items-center gap-6 border-t border-slate-100 py-2.5 text-[13px] font-semibold overflow-x-auto scrollbar-none">
-            {navLinks.map(({ label, to }) => (
-              <Link
-                key={to}
-                to={to}
-                className={`whitespace-nowrap transition-colors duration-150 pb-0.5 border-b-2 ${
-                  isActive(to)
-                    ? 'text-brand-indigo border-brand-indigo'
-                    : 'text-slate-600 hover:text-brand-indigo border-transparent hover:border-brand-indigo/40'
-                }`}
-              >
-                {label}
-              </Link>
-            ))}
-            <div className="ml-auto flex items-center gap-1.5 text-xs text-slate-500 flex-shrink-0">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span className="text-slate-600 font-medium">Quality Verified</span>
-              <span className="text-slate-300">•</span>
-              <span>Pan-India Express Dispatch</span>
-            </div>
-          </nav>
+          </div>
         </div>
       </div>
 
-      {/* ── Mobile Menu Drawer ── */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="fixed inset-0 bg-brand-navy/60 backdrop-blur-sm animate-overlay-in"
-            onClick={() => setIsMobileMenuOpen(false)} />
-          <div className="fixed inset-y-0 left-0 max-w-[320px] w-full bg-white shadow-2xl flex flex-col animate-slide-left overflow-y-auto">
-            {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-100">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-indigo to-brand-violet text-white font-bold flex items-center justify-center font-serif text-base">M</div>
-                <span className="font-extrabold text-brand-navy text-sm tracking-tight">MAHALAXMI MILLS</span>
-              </div>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+      {/* ── Sub Navigation Category Bar (Row 2) ── */}
+      <nav className="hidden lg:block border-b border-slate-200/70 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ul className="flex items-center justify-center gap-6 xl:gap-8 h-11 text-xs sm:text-[13px] font-medium text-slate-700">
+            {navLinks.map((link) => {
+              const active = isCurrentActive(link.to);
+              return (
+                <li key={link.to} className="relative h-full flex items-center">
+                  <Link
+                    to={link.to}
+                    className={`transition-colors whitespace-nowrap py-2 font-medium ${
+                      active
+                        ? 'text-indigo-600 font-semibold'
+                        : 'text-slate-700 hover:text-indigo-600'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                  {active && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-indigo-600 rounded-t-md" />
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </nav>
 
+      {/* ── Mobile Drawer ── */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden border-b border-slate-200 bg-white shadow-lg animate-fade-in-up">
+          <div className="p-4 space-y-3">
             {/* Mobile Search */}
-            <form onSubmit={handleSearchSubmit} className="px-5 pt-4 pb-2">
-              <div className="relative">
-                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                <input type="text" placeholder="Search products..."
-                  value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-                  className="w-full bg-slate-50 text-sm pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-brand-indigo transition-colors" />
-              </div>
+            <form onSubmit={handleSearchSubmit} className="relative">
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                className="w-full bg-slate-50 text-xs text-slate-900 placeholder:text-slate-400 pl-4 pr-10 py-2.5 rounded-full border border-slate-200 outline-none"
+              />
+              <button
+                type="submit"
+                className="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center"
+              >
+                <Search className="w-3.5 h-3.5" />
+              </button>
             </form>
 
-            {/* Nav Links */}
-            <div className="flex-1 px-3 py-2 space-y-0.5">
-              {navLinks.map(({ label, to }) => (
-                <Link key={to} to={to} onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-                    isActive(to) ? 'bg-indigo-50 text-brand-indigo' : 'text-slate-700 hover:bg-slate-50'
-                  }`}>
-                  {label}
-                </Link>
+            <ul className="space-y-1 pt-2">
+              {navLinks.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`block px-3 py-2 rounded-lg text-sm font-medium ${
+                      isCurrentActive(link.to)
+                        ? 'bg-indigo-50 text-indigo-600 font-semibold'
+                        : 'text-slate-700 hover:bg-slate-50'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
               ))}
-              <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold text-brand-indigo bg-indigo-50 hover:bg-indigo-100 transition-colors mt-2">
-                <LayoutDashboard className="w-4 h-4" />
-                Admin Dashboard
-              </Link>
-            </div>
-
-            <div className="px-5 py-4 border-t border-slate-100 text-xs text-slate-500">
-              <p className="font-semibold text-slate-700 mb-0.5">Direct Mill Rates & Wholesale Essentials</p>
-              <p>Solapur • Coimbatore • Surat</p>
-            </div>
+            </ul>
           </div>
         </div>
       )}

@@ -1,53 +1,59 @@
 import React from 'react';
-import { Factory, BadgeCheck, Package, ShoppingBag } from 'lucide-react';
+import { Factory, ShieldCheck, Truck, ShoppingBag } from 'lucide-react';
 
 const TRUST_ITEMS = [
   {
     icon: Factory,
-    label: 'Direct Mill Rates',
-    sub: 'Best prices from loom',
-    color: 'text-brand-indigo',
-    bg: 'bg-indigo-50',
+    title: 'Direct Mill Rates',
+    desc: 'Quality products at best prices',
+    iconBg: 'bg-indigo-50 border-indigo-100 text-indigo-600',
   },
   {
-    icon: BadgeCheck,
-    label: 'Quality Focused',
-    sub: 'Verified textile products',
-    color: 'text-emerald-600',
-    bg: 'bg-emerald-50',
+    icon: ShieldCheck,
+    title: 'Quality Focused',
+    desc: 'Trusted for everyday essentials',
+    iconBg: 'bg-purple-50 border-purple-100 text-purple-600',
   },
   {
-    icon: Package,
-    label: 'Wholesale & Retail',
-    sub: 'Safe & secure packaging',
-    color: 'text-amber-600',
-    bg: 'bg-amber-50',
+    icon: Truck,
+    title: 'Wholesale & Retail',
+    desc: 'For home and business needs',
+    iconBg: 'bg-blue-50 border-blue-100 text-blue-600',
   },
   {
     icon: ShoppingBag,
-    label: 'Convenient Shopping',
-    sub: 'Easy returns & exchange',
-    color: 'text-violet-600',
-    bg: 'bg-violet-50',
+    title: 'Easy Shopping',
+    desc: 'Safe and convenient experience',
+    iconBg: 'bg-purple-50 border-purple-100 text-purple-600',
   },
 ];
 
 export const TrustValueStrip = () => {
   return (
-    <section className="bg-white border-b border-slate-100">
+    <section className="bg-white border-b border-slate-200/70 py-6 sm:py-8 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-slate-100">
-          {TRUST_ITEMS.map(({ icon: Icon, label, sub, color, bg }) => (
-            <div key={label} className="flex items-center gap-3 px-4 sm:px-6 py-4 sm:py-5 hover:bg-slate-50/60 transition-colors group">
-              <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${bg} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200`}>
-                <Icon className={`w-4.5 h-4.5 sm:w-5 sm:h-5 ${color}`} style={{ width: '18px', height: '18px' }} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-slate-200">
+          {TRUST_ITEMS.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={idx}
+                className="flex items-center gap-4 px-3 lg:px-6"
+              >
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 border ${item.iconBg}`}>
+                  <Icon className="w-5 h-5 stroke-[1.8]" />
+                </div>
+                <div>
+                  <h3 className="text-sm sm:text-[15px] font-bold text-slate-900 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-xs sm:text-[13px] font-bold text-slate-800 leading-tight">{label}</p>
-                <p className="text-[10px] sm:text-xs text-slate-400 mt-0.5">{sub}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
