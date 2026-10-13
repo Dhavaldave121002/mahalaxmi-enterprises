@@ -84,6 +84,31 @@ export const StoreProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
 
+  // Auth User State
+  const [user, setUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('mahalaxmi_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      return null;
+    }
+  });
+
+  const loginUser = (userData) => {
+    setUser(userData);
+    try {
+      localStorage.setItem('mahalaxmi_user', JSON.stringify(userData));
+    } catch (e) {}
+  };
+
+  const logoutUser = () => {
+    setUser(null);
+    try {
+      localStorage.removeItem('mahalaxmi_user');
+    } catch (e) {}
+    showToast('Signed out successfully');
+  };
+
   // Sync to localStorage
   useEffect(() => {
     localStorage.setItem('mahalaxmi_categories', JSON.stringify(categories));
@@ -435,7 +460,10 @@ export const StoreProvider = ({ children }) => {
         updateHomepageConfig,
         createOrder,
         updateOrderStatus,
-        resetToFactoryDefaults
+        resetToFactoryDefaults,
+        user,
+        loginUser,
+        logoutUser
       }}
     >
       {children}

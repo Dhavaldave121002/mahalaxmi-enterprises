@@ -8,6 +8,7 @@ import { CheckoutPage } from './pages/storefront/CheckoutPage';
 import { OrderConfirmationPage } from './pages/storefront/OrderConfirmationPage';
 import { AboutPage } from './pages/storefront/AboutPage';
 import { WishlistPage } from './pages/storefront/WishlistPage';
+import { LoginPage } from './pages/storefront/LoginPage';
 import { AdminPage } from './pages/admin/AdminPage';
 import { ToastContainer } from './components/common/ToastContainer';
 
@@ -60,6 +61,11 @@ export const App = () => {
     // 8. Wishlist
     if (path === '/wishlist') {
       return <WishlistPage />;
+    }
+
+    // 9. Login & Account
+    if (path === '/login') {
+      return <LoginPage />;
     }
 
     // Default: Curated Brand Landing Page (Homepage)

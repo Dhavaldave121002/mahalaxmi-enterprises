@@ -25,7 +25,7 @@ export const LotusLogo = ({ className = "w-10 h-10" }) => (
 );
 
 export const Navbar = () => {
-  const { products, cart, wishlist, setIsCartOpen } = useStore();
+  const { products, cart, wishlist, setIsCartOpen, user } = useStore();
   const { currentPath, navigate } = useRouter();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -181,15 +181,15 @@ export const Navbar = () => {
                 </span>
               </Link>
 
-              {/* Account */}
+              {/* Account / Login */}
               <Link
-                to="/admin"
-                className="flex items-center gap-1.5 text-slate-700 hover:text-indigo-600 transition-colors group"
+                to="/login"
+                className="flex items-center gap-1.5 text-slate-700 hover:text-indigo-600 transition-colors group cursor-pointer"
                 aria-label="Account"
               >
                 <User className="w-5 h-5 text-slate-700 group-hover:text-indigo-600 transition-colors" />
                 <span className="hidden sm:inline text-xs font-semibold text-slate-700 group-hover:text-indigo-600">
-                  Account
+                  {user ? (user.name?.split(' ')[0] || 'Account') : 'Account'}
                 </span>
               </Link>
 

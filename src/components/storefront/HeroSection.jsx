@@ -5,21 +5,24 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const SLIDES = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=1920&q=85',
-    title: 'Luxury Cotton Towels & Bath Linens',
+    image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1920&q=85',
+    title: 'Luxury Combed Cotton Towels & Bath Linens',
+    subtitle: 'Direct Mill Rates • 100% Ring-Spun Cotton • Pan-India Loom Dispatch',
     link: '/collections/cotton-products'
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1920&q=85',
-    title: 'Premium Bedsheets & Textile Weaves',
-    link: '/collections/textile'
+    image: 'https://images.unsplash.com/photo-1616627547584-bf28cee262db?auto=format&fit=crop&w=1920&q=85',
+    title: 'Hotel Quality Woven Linens & Spa Essentials',
+    subtitle: 'High Absorbency Weaves • Direct from Accredited Mills',
+    link: '/collections/home-and-kitchen'
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=85',
-    title: 'Everyday Household & Culinary Textiles',
-    link: '/collections/home-and-kitchen'
+    image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1920&q=85',
+    title: 'Premium Bedsheets & Satin Weaves',
+    subtitle: '400 Thread Count Breathability • Zero Middlemen Markups',
+    link: '/collections/textile'
   }
 ];
 
