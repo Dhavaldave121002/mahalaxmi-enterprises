@@ -1,59 +1,53 @@
 import React from 'react';
-import { Tag, ShieldCheck, Building2, Truck } from 'lucide-react';
+import { Factory, BadgeCheck, Package, ShoppingBag } from 'lucide-react';
+
+const TRUST_ITEMS = [
+  {
+    icon: Factory,
+    label: 'Direct Mill Rates',
+    sub: 'Best prices from loom',
+    color: 'text-brand-indigo',
+    bg: 'bg-indigo-50',
+  },
+  {
+    icon: BadgeCheck,
+    label: 'Quality Focused',
+    sub: 'Verified textile products',
+    color: 'text-emerald-600',
+    bg: 'bg-emerald-50',
+  },
+  {
+    icon: Package,
+    label: 'Wholesale & Retail',
+    sub: 'Safe & secure packaging',
+    color: 'text-amber-600',
+    bg: 'bg-amber-50',
+  },
+  {
+    icon: ShoppingBag,
+    label: 'Convenient Shopping',
+    sub: 'Easy returns & exchange',
+    color: 'text-violet-600',
+    bg: 'bg-violet-50',
+  },
+];
 
 export const TrustValueStrip = () => {
-  const benefits = [
-    {
-      icon: Tag,
-      title: "Direct Mill Rates",
-      description: "Direct loom sourcing without middle distributor markups.",
-      color: "text-amber-600 bg-amber-50"
-    },
-    {
-      icon: ShieldCheck,
-      title: "Quality-Focused Products",
-      description: "Tested yarn counts, verified GSM, and reinforced hems.",
-      color: "text-emerald-600 bg-emerald-50"
-    },
-    {
-      icon: Building2,
-      title: "Wholesale & Retail",
-      description: "Order single packs or bulk commercial carton batches.",
-      color: "text-brand-indigo bg-indigo-50"
-    },
-    {
-      icon: Truck,
-      title: "Convenient Shopping",
-      description: "Prompt Pan-India doorstep delivery with live parcel tracking.",
-      color: "text-brand-violet bg-purple-50"
-    }
-  ];
-
   return (
-    <section className="py-8 bg-slate-50 border-b border-slate-200/60">
+    <section className="bg-white border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {benefits.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={idx}
-                className="flex items-start gap-4 p-4 rounded-xl bg-white border border-slate-200/80 shadow-subtle hover:border-slate-300 transition-colors"
-              >
-                <div className={`p-2.5 rounded-lg flex-shrink-0 ${item.color}`}>
-                  <Icon className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 leading-snug">
-                    {item.title}
-                  </h4>
-                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-slate-100">
+          {TRUST_ITEMS.map(({ icon: Icon, label, sub, color, bg }) => (
+            <div key={label} className="flex items-center gap-3 px-4 sm:px-6 py-4 sm:py-5 hover:bg-slate-50/60 transition-colors group">
+              <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${bg} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200`}>
+                <Icon className={`w-4.5 h-4.5 sm:w-5 sm:h-5 ${color}`} style={{ width: '18px', height: '18px' }} />
               </div>
-            );
-          })}
+              <div>
+                <p className="text-xs sm:text-[13px] font-bold text-slate-800 leading-tight">{label}</p>
+                <p className="text-[10px] sm:text-xs text-slate-400 mt-0.5">{sub}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
