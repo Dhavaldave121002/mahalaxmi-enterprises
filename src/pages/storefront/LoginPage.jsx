@@ -14,7 +14,7 @@ import {
   ArrowRight,
   ShieldCheck,
   CheckCircle2,
-  ArrowLeft
+  Sparkles
 } from 'lucide-react';
 
 export const LoginPage = () => {
@@ -97,32 +97,37 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#5F6D59]/25 text-slate-900">
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-slate-900">
       <AnnouncementBar />
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-12">
-        <div className="w-full max-w-5xl bg-[#F9F7F2] rounded-3xl sm:rounded-[32px] overflow-hidden shadow-2xl border border-slate-200/80">
+      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-12 relative overflow-hidden">
+        {/* Subtle ambient brand glow matching website theme */}
+        <div className="absolute top-1/4 left-1/4 -z-10 w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-1/4 -z-10 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Central Split-Screen Card */}
+        <div className="w-full max-w-5xl bg-white rounded-3xl sm:rounded-[32px] overflow-hidden shadow-xl border border-slate-200/90">
           <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[640px]">
 
-            {/* ── LEFT COLUMN (7 cols): Editorial Typography & Login Form ── */}
-            <div className="lg:col-span-7 p-6 sm:p-10 lg:p-14 flex flex-col justify-between">
+            {/* ── LEFT COLUMN (7 cols): Editorial Typography & Theme-Matched Login Form ── */}
+            <div className="lg:col-span-7 p-6 sm:p-10 lg:p-14 flex flex-col justify-between bg-white">
               
               <div>
-                {/* Brand Header with Golden Lotus */}
+                {/* Brand Header with Golden Lotus & Indigo Subtitle */}
                 <div className="flex items-center gap-3 mb-8">
-                  <LotusLogo className="w-9 h-9" />
+                  <LotusLogo className="w-10 h-10" />
                   <div>
-                    <span className="font-serif text-lg sm:text-xl font-bold tracking-tight text-slate-900 leading-tight block">
+                    <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-tight block">
                       Mahalaxmi Enterprises
                     </span>
-                    <span className="text-[8.5px] sm:text-[9.5px] font-bold tracking-[0.16em] text-indigo-600 uppercase block">
+                    <span className="text-[9px] sm:text-[10px] font-bold tracking-[0.16em] text-indigo-600 uppercase block mt-0.5">
                       DIRECT MILL RATES &amp; WHOLESALE ESSENTIALS
                     </span>
                   </div>
                 </div>
 
-                {/* Big Editorial Headline matching reference screenshot */}
+                {/* Big Editorial Headline */}
                 <div className="mb-4">
                   <h1 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-normal text-slate-900 tracking-tight leading-[1.12]">
                     ELEVATE YOUR REST.<br />
@@ -137,9 +142,9 @@ export const LoginPage = () => {
 
                 {/* Logged in state view */}
                 {user ? (
-                  <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+                  <div className="p-5 rounded-2xl bg-indigo-50/60 border border-indigo-100 shadow-2xs space-y-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+                      <div className="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">
                         {user.name?.[0] || 'U'}
                       </div>
                       <div>
@@ -151,14 +156,14 @@ export const LoginPage = () => {
                       <button
                         type="button"
                         onClick={() => navigate('/')}
-                        className="flex-1 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700"
+                        className="flex-1 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-colors shadow-xs"
                       >
                         Go to Storefront
                       </button>
                       <button
                         type="button"
                         onClick={logoutUser}
-                        className="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200"
+                        className="px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-50 transition-colors"
                       >
                         Sign Out
                       </button>
@@ -166,14 +171,14 @@ export const LoginPage = () => {
                   </div>
                 ) : (
                   <div>
-                    {/* Tab Switcher Pills: Sign In / Create Account / Wholesale */}
-                    <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-200/70 rounded-full text-xs font-semibold text-slate-700 mb-6 max-w-md">
+                    {/* Theme-Matched Tab Switcher Pills */}
+                    <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-100 rounded-full text-xs font-semibold text-slate-600 mb-6 max-w-md border border-slate-200/60">
                       <button
                         type="button"
                         onClick={() => setActiveTab('signin')}
                         className={`py-2 rounded-full transition-all cursor-pointer ${
                           activeTab === 'signin'
-                            ? 'bg-white text-slate-900 font-bold shadow-xs'
+                            ? 'bg-indigo-600 text-white font-bold shadow-sm'
                             : 'hover:text-slate-900'
                         }`}
                       >
@@ -184,7 +189,7 @@ export const LoginPage = () => {
                         onClick={() => setActiveTab('register')}
                         className={`py-2 rounded-full transition-all cursor-pointer ${
                           activeTab === 'register'
-                            ? 'bg-white text-slate-900 font-bold shadow-xs'
+                            ? 'bg-indigo-600 text-white font-bold shadow-sm'
                             : 'hover:text-slate-900'
                         }`}
                       >
@@ -195,7 +200,7 @@ export const LoginPage = () => {
                         onClick={() => setActiveTab('b2b')}
                         className={`py-2 rounded-full transition-all cursor-pointer ${
                           activeTab === 'b2b'
-                            ? 'bg-white text-slate-900 font-bold shadow-xs'
+                            ? 'bg-indigo-600 text-white font-bold shadow-sm'
                             : 'hover:text-slate-900'
                         }`}
                       >
@@ -218,7 +223,7 @@ export const LoginPage = () => {
                               placeholder="e.g. 98400 12345 or user@email.com"
                               value={loginForm.identifier}
                               onChange={e => setLoginForm({ ...loginForm, identifier: e.target.value })}
-                              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-600/10 transition-colors shadow-2xs"
+                              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-xs sm:text-sm text-slate-900 focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-colors shadow-2xs"
                             />
                           </div>
                         </div>
@@ -231,7 +236,7 @@ export const LoginPage = () => {
                             <a
                               href="#forgot"
                               onClick={(e) => { e.preventDefault(); showToast('Password reset link sent to registered contact'); }}
-                              className="text-[11px] font-semibold text-amber-700 hover:underline"
+                              className="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 hover:underline"
                             >
                               Forgot Password?
                             </a>
@@ -244,7 +249,7 @@ export const LoginPage = () => {
                               placeholder="••••••••"
                               value={loginForm.password}
                               onChange={e => setLoginForm({ ...loginForm, password: e.target.value })}
-                              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-600/10 transition-colors shadow-2xs"
+                              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-xs sm:text-sm text-slate-900 focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-colors shadow-2xs"
                             />
                             <button
                               type="button"
@@ -258,22 +263,22 @@ export const LoginPage = () => {
 
                         <div className="flex items-center justify-between text-xs text-slate-600 pt-1">
                           <label className="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" defaultChecked className="rounded border-slate-300 text-amber-600 focus:ring-0" />
+                            <input type="checkbox" defaultChecked className="rounded border-slate-300 text-indigo-600 focus:ring-0" />
                             <span>Remember me</span>
                           </label>
                           <button
                             type="button"
                             onClick={fillQuickDemo}
-                            className="text-[11px] text-amber-700 hover:text-amber-800 font-bold"
+                            className="text-[11px] text-indigo-600 hover:text-indigo-800 font-bold"
                           >
                             ⚡ Quick Demo Fill
                           </button>
                         </div>
 
-                        {/* Warm Amber-Gold Button matching reference mockup */}
+                        {/* Theme Matched Royal Indigo Pill Button */}
                         <button
                           type="submit"
-                          className="w-full py-3.5 px-6 rounded-full bg-[#B88E4F] hover:bg-[#A37B3F] text-white font-bold text-xs sm:text-sm tracking-widest uppercase shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 mt-2"
+                          className="w-full py-3.5 px-6 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm tracking-widest uppercase shadow-md shadow-indigo-600/30 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 mt-2"
                         >
                           <span>Sign In to Account</span>
                           <ArrowRight className="w-4 h-4" />
@@ -294,7 +299,7 @@ export const LoginPage = () => {
                             placeholder="e.g. Ramesh Patel"
                             value={registerForm.name}
                             onChange={e => setRegisterForm({ ...registerForm, name: e.target.value })}
-                            className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:border-amber-600 outline-none"
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:border-indigo-600 outline-none"
                           />
                         </div>
 
@@ -309,7 +314,7 @@ export const LoginPage = () => {
                               placeholder="+91 98XXX XXXXX"
                               value={registerForm.phone}
                               onChange={e => setRegisterForm({ ...registerForm, phone: e.target.value })}
-                              className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:border-amber-600 outline-none"
+                              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:border-indigo-600 outline-none"
                             />
                           </div>
                           <div>
@@ -321,7 +326,7 @@ export const LoginPage = () => {
                               placeholder="user@email.com"
                               value={registerForm.email}
                               onChange={e => setRegisterForm({ ...registerForm, email: e.target.value })}
-                              className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:border-amber-600 outline-none"
+                              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:border-indigo-600 outline-none"
                             />
                           </div>
                         </div>
@@ -333,7 +338,7 @@ export const LoginPage = () => {
                           <select
                             value={registerForm.accountType}
                             onChange={e => setRegisterForm({ ...registerForm, accountType: e.target.value })}
-                            className="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-800 focus:border-amber-600 outline-none cursor-pointer"
+                            className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:border-indigo-600 outline-none cursor-pointer"
                           >
                             <option>Retail / Household Buyer</option>
                             <option>Boutique Homestay / Hotel</option>
@@ -352,13 +357,13 @@ export const LoginPage = () => {
                             placeholder="At least 6 characters"
                             value={registerForm.password}
                             onChange={e => setRegisterForm({ ...registerForm, password: e.target.value })}
-                            className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:border-amber-600 outline-none"
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:border-indigo-600 outline-none"
                           />
                         </div>
 
                         <button
                           type="submit"
-                          className="w-full py-3.5 px-6 rounded-full bg-[#B88E4F] hover:bg-[#A37B3F] text-white font-bold text-xs sm:text-sm tracking-widest uppercase shadow-md transition-all cursor-pointer mt-2"
+                          className="w-full py-3.5 px-6 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm tracking-widest uppercase shadow-md shadow-indigo-600/30 transition-all cursor-pointer mt-2"
                         >
                           <span>Create Free Account</span>
                         </button>
@@ -378,7 +383,7 @@ export const LoginPage = () => {
                             placeholder="e.g. Royal Heritage Resort Pvt Ltd"
                             value={b2bForm.businessName}
                             onChange={e => setB2bForm({ ...b2bForm, businessName: e.target.value })}
-                            className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:border-amber-600 outline-none"
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:border-indigo-600 outline-none"
                           />
                         </div>
 
@@ -392,7 +397,7 @@ export const LoginPage = () => {
                               placeholder="27AAAAA0000A1Z5"
                               value={b2bForm.gstNumber}
                               onChange={e => setB2bForm({ ...b2bForm, gstNumber: e.target.value })}
-                              className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 uppercase focus:border-amber-600 outline-none"
+                              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 uppercase focus:border-indigo-600 outline-none"
                             />
                           </div>
                           <div>
@@ -405,7 +410,7 @@ export const LoginPage = () => {
                               placeholder="+91 98XXX XXXXX"
                               value={b2bForm.phone}
                               onChange={e => setB2bForm({ ...b2bForm, phone: e.target.value })}
-                              className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:border-amber-600 outline-none"
+                              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:border-indigo-600 outline-none"
                             />
                           </div>
                         </div>
@@ -419,7 +424,7 @@ export const LoginPage = () => {
                             placeholder="Manager / Proprietor Name"
                             value={b2bForm.contactPerson}
                             onChange={e => setB2bForm({ ...b2bForm, contactPerson: e.target.value })}
-                            className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:border-amber-600 outline-none"
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:border-indigo-600 outline-none"
                           />
                         </div>
 
@@ -436,8 +441,8 @@ export const LoginPage = () => {
                 )}
               </div>
 
-              {/* Bottom Guarantee Line matching reference screenshot */}
-              <div className="pt-8 border-t border-slate-200/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[11px] font-medium text-slate-500">
+              {/* Bottom Guarantee Line */}
+              <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[11px] font-medium text-slate-500">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-500" />
                   <span className="font-semibold text-slate-700">SUSTAINABLY SOURCED</span>
@@ -451,14 +456,14 @@ export const LoginPage = () => {
 
             </div>
 
-            {/* ── RIGHT COLUMN (5 cols): Serene Bedroom Photography Frame ── */}
-            <div className="lg:col-span-5 relative overflow-hidden bg-slate-200 min-h-[300px] lg:min-h-full">
+            {/* ── RIGHT COLUMN (5 cols): Serene Luxury Linen Photography Frame ── */}
+            <div className="lg:col-span-5 relative overflow-hidden bg-slate-100 min-h-[320px] lg:min-h-full">
               <img
-                src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=85"
+                src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=85"
                 alt="Serene bedroom sanctuary with luxury linen bedding"
                 className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
             </div>
 
           </div>
