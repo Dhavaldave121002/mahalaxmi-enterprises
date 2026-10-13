@@ -9,6 +9,21 @@ import {
 
 const StoreContext = createContext(null);
 
+const CURRENT_DATA_VERSION = 'v5_sync_latest_photos';
+
+// Invalidate stale localStorage cache when data version changes
+try {
+  const savedVersion = localStorage.getItem('mahalaxmi_data_version');
+  if (savedVersion !== CURRENT_DATA_VERSION) {
+    localStorage.removeItem('mahalaxmi_categories');
+    localStorage.removeItem('mahalaxmi_products');
+    localStorage.removeItem('mahalaxmi_homepage_config');
+    localStorage.setItem('mahalaxmi_data_version', CURRENT_DATA_VERSION);
+  }
+} catch (e) {
+  // Ignore localStorage access issues
+}
+
 export const StoreProvider = ({ children }) => {
   // Load initial states from localStorage with graceful fallback
   const [categories, setCategories] = useState(() => {

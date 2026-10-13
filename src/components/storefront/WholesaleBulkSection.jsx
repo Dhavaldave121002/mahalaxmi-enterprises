@@ -110,61 +110,109 @@ export const WholesaleBulkSection = () => {
 
           </div>
 
-          {/* Right Card: Institutional Supply Spec Card */}
+          {/* Right Card: Instant Quote Form & Live Tiers */}
           <div className="lg:col-span-5">
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-2xl relative">
+            <div className="bg-slate-900/95 border border-slate-800 rounded-3xl p-6 sm:p-7 backdrop-blur-md shadow-2xl relative">
+              
               <div className="flex items-center justify-between pb-4 border-b border-slate-800">
                 <div className="flex items-center gap-2">
-                  <Calculator className="w-5 h-5 text-amber-400" />
-                  <span className="text-sm font-bold text-white">Live Tier Demonstration</span>
+                  <Building2 className="w-5 h-5 text-amber-400" />
+                  <span className="text-sm font-bold text-white">Instant Wholesale Quote</span>
                 </div>
-                <span className="text-xs font-medium text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+                <span className="text-[11px] font-bold text-emerald-400 bg-emerald-950/90 px-2.5 py-0.5 rounded-full border border-emerald-800">
                   GST Verified
                 </span>
               </div>
 
-              <div className="mt-5 space-y-4 text-xs">
-                <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-center justify-between">
-                  <div>
-                    <p className="font-semibold text-white">550 GSM Luxury Hotel Towels</p>
-                    <p className="text-slate-400 text-[11px]">Retail Rate: ₹649 / pack</p>
+              {isSubmitted ? (
+                <div className="py-10 text-center space-y-3">
+                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-6 h-6" />
                   </div>
-                  <div className="text-right">
-                    <p className="text-emerald-400 font-bold text-sm">₹450 / pack</p>
-                    <p className="text-slate-400 text-[10px]">at 100+ units</p>
-                  </div>
+                  <h4 className="text-base font-bold text-white">Enquiry Received!</h4>
+                  <p className="text-xs text-slate-300 max-w-xs mx-auto">
+                    Our dedicated B2B Mill Relationship Manager will call you shortly with formal tier pricing.
+                  </p>
                 </div>
-
-                <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-center justify-between">
+              ) : (
+                <form onSubmit={handleSubmit} className="mt-4 space-y-3.5">
                   <div>
-                    <p className="font-semibold text-white">Commercial Microfiber (12-Pack)</p>
-                    <p className="text-slate-400 text-[11px]">Retail Rate: ₹399 / pack</p>
+                    <label className="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                      Business / Company Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Royal Heritage Resort / Sharma Textiles"
+                      value={formData.businessName}
+                      onChange={e => setFormData({ ...formData, businessName: e.target.value })}
+                      className="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 outline-none transition-colors"
+                    />
                   </div>
-                  <div className="text-right">
-                    <p className="text-emerald-400 font-bold text-sm">₹250 / pack</p>
-                    <p className="text-slate-400 text-[10px]">at 100+ units</p>
-                  </div>
-                </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-center justify-between">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                        Contact Phone *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="+91 98XXX XXXXX"
+                        value={formData.phone}
+                        onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 outline-none transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                        Product Category
+                      </label>
+                      <select
+                        value={formData.categoryInterest}
+                        onChange={e => setFormData({ ...formData, categoryInterest: e.target.value })}
+                        className="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-indigo-500 outline-none transition-colors"
+                      >
+                        <option>Textile (Bedsheets & Curtains)</option>
+                        <option>Cotton Products (Towels & Bags)</option>
+                        <option>Household (Microfiber & Cleaning)</option>
+                        <option>Home & Kitchen (Towels & Aprons)</option>
+                      </select>
+                    </div>
+                  </div>
+
                   <div>
-                    <p className="font-semibold text-white">300 TC Percale Double Bedsheet</p>
-                    <p className="text-slate-400 text-[11px]">Retail Rate: ₹899 / set</p>
+                    <label className="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                      Estimated Volume
+                    </label>
+                    <select
+                      value={formData.estimatedQuantity}
+                      onChange={e => setFormData({ ...formData, estimatedQuantity: e.target.value })}
+                      className="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-indigo-500 outline-none transition-colors"
+                    >
+                      <option>Tier 1: 10 - 25 units (15% Off)</option>
+                      <option>Tier 2: 26 - 99 units (25% Off)</option>
+                      <option>Tier 3: 100+ units (Loom Wholesale Invoice)</option>
+                    </select>
                   </div>
-                  <div className="text-right">
-                    <p className="text-emerald-400 font-bold text-sm">₹650 / set</p>
-                    <p className="text-slate-400 text-[10px]">at 100+ units</p>
-                  </div>
-                </div>
-              </div>
 
-              <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                  <button
+                    type="submit"
+                    className="w-full mt-2 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/30 transition-all cursor-pointer"
+                  >
+                    <span>Request Mill Quotation</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </form>
+              )}
+
+              <div className="mt-4 pt-3.5 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
                 <div className="flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-slate-300" />
+                  <Phone className="w-3.5 h-3.5 text-indigo-400" />
                   <span>+91 98400 12345</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-slate-300" />
+                  <Mail className="w-3.5 h-3.5 text-indigo-400" />
                   <span>b2b@mahalaxmienterprises.in</span>
                 </div>
               </div>
