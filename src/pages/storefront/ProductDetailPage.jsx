@@ -21,7 +21,8 @@ import {
   Tag,
   Factory,
   Layers,
-  ArrowRight
+  ArrowRight,
+  MessageCircle
 } from 'lucide-react';
 
 export const ProductDetailPage = ({ slug }) => {
@@ -402,6 +403,17 @@ export const ProductDetailPage = ({ slug }) => {
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
+
+                {/* Instant WhatsApp Wholesale Quote Button */}
+                <a
+                  href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello Mahalaxmi Enterprises! I am interested in wholesale/bulk pricing for "${product.name}" (Qty: ${quantity} units). Please share the rate sheet.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-4 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors shadow-2xs"
+                >
+                  <MessageCircle className="w-4 h-4 text-emerald-600" />
+                  <span>Inquire Direct Mill Rates on WhatsApp</span>
+                </a>
 
                 {/* Delivery and Guarantee strip */}
                 <div className="grid grid-cols-3 gap-2 pt-3 text-[11px] text-slate-500 text-center border-t border-slate-100">

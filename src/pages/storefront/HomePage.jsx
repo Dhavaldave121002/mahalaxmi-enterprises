@@ -7,6 +7,7 @@ import { CategoryGrid } from '../../components/storefront/CategoryGrid';
 import { CuratedBestSellers } from '../../components/storefront/CuratedBestSellers';
 import { WholesaleBulkSection } from '../../components/storefront/WholesaleBulkSection';
 import { BrandStorySection } from '../../components/storefront/BrandStorySection';
+import { TestimonialsSection } from '../../components/storefront/TestimonialsSection';
 import { FinalShoppingCta } from '../../components/storefront/FinalShoppingCta';
 import { Footer } from '../../components/storefront/Footer';
 import { CartDrawer } from '../../components/storefront/CartDrawer';
@@ -24,6 +25,7 @@ export const HomePage = () => {
         <CuratedBestSellers />
         <WholesaleBulkSection />
         <BrandStorySection />
+        <TestimonialsSection />
         <FinalShoppingCta />
       </main>
 

@@ -11,9 +11,13 @@ import { WishlistPage } from './pages/storefront/WishlistPage';
 import { LoginPage } from './pages/storefront/LoginPage';
 import { AdminPage } from './pages/admin/AdminPage';
 import { ToastContainer } from './components/common/ToastContainer';
+import { WhatsAppWidget } from './components/common/WhatsAppWidget';
+import { TrackOrderModal } from './components/common/TrackOrderModal';
+import { useStore } from './context/StoreContext';
 
 export const App = () => {
   const { currentPath } = useRouter();
+  const { isTrackOrderOpen, setIsTrackOrderOpen } = useStore();
 
   // Normalize path without trailing slash (unless root)
   const path = currentPath.split('?')[0].replace(/\/+$/, '') || '/';
@@ -72,10 +76,17 @@ export const App = () => {
     return <HomePage />;
   };
 
+  const isAdmin = path.startsWith('/admin');
+
   return (
     <>
       {renderRoute()}
       <ToastContainer />
+      {!isAdmin && <WhatsAppWidget />}
+      <TrackOrderModal
+        isOpen={isTrackOrderOpen}
+        onClose={() => setIsTrackOrderOpen(false)}
+      />
     </>
   );
 };

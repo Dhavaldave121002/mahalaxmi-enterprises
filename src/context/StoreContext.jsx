@@ -82,6 +82,7 @@ export const StoreProvider = ({ children }) => {
 
   const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isTrackOrderOpen, setIsTrackOrderOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
 
   // Auth User State
@@ -434,6 +435,8 @@ export const StoreProvider = ({ children }) => {
         cart,
         isCartOpen,
         setIsCartOpen,
+        isTrackOrderOpen,
+        setIsTrackOrderOpen,
         wishlist,
         appliedCoupon,
         cartSubtotal,

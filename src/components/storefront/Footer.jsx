@@ -4,7 +4,7 @@ import { useRouter, Link } from '../../router/Router';
 import { Phone, Mail, MapPin, ShieldCheck, Heart } from 'lucide-react';
 
 export const Footer = () => {
-  const { categories } = useStore();
+  const { categories, setIsTrackOrderOpen } = useStore();
 
   return (
     <footer className="bg-brand-navy text-slate-300 text-sm border-t border-slate-800">
@@ -80,6 +80,15 @@ export const Footer = () => {
                 <a href="#bulk-section" className="hover:text-white transition-colors">
                   Institutional & Bulk B2B Supply
                 </a>
+              </li>
+              <li>
+                <button
+                  onClick={() => setIsTrackOrderOpen(true)}
+                  className="hover:text-amber-300 text-left transition-colors flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>Track My Loom Dispatch</span>
+                  <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded font-mono">LIVE</span>
+                </button>
               </li>
               <li>
                 <span className="text-slate-400 cursor-default">

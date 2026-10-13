@@ -1,8 +1,11 @@
 import React from 'react';
-import { Factory, Truck, Package, Headphones } from 'lucide-react';
+import { Factory, Truck, Package, Headphones, MapPin } from 'lucide-react';
 import { Link } from '../../router/Router';
+import { useStore } from '../../context/StoreContext';
 
 export const AnnouncementBar = () => {
+  const { setIsTrackOrderOpen } = useStore();
+
   return (
     <div className="bg-[#0B1528] text-white text-[11px] sm:text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,12 +23,15 @@ export const AnnouncementBar = () => {
             <span className="text-slate-300 font-medium hidden xs:inline">Quality Essentials</span>
           </div>
 
-          {/* Right: Shipping, Bulk, Support */}
+          {/* Right: Shipping, Track Order, Bulk, Support */}
           <div className="hidden md:flex items-center gap-4 text-slate-300">
-            <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer">
-              <Truck className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Free Shipping on Orders Above ₹999</span>
-            </span>
+            <button
+              onClick={() => setIsTrackOrderOpen(true)}
+              className="flex items-center gap-1.5 hover:text-amber-300 text-slate-200 transition-colors cursor-pointer"
+            >
+              <Truck className="w-3.5 h-3.5 text-amber-400" />
+              <span>Track Dispatch</span>
+            </button>
             <span className="text-slate-600">|</span>
             <a
               href="#bulk-section"
