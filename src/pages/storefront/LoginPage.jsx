@@ -46,6 +46,27 @@ export const LoginPage = () => {
       showToast('Please enter your mobile number or email', 'error');
       return;
     }
+
+    const id = loginForm.identifier.trim().toLowerCase();
+    const pwd = loginForm.password.trim();
+
+    // 👑 Direct Admin Check
+    if (
+      (id === 'admin@mahalaxmi.com' || id === 'admin' || id === 'mahalaxmi') &&
+      (pwd === 'admin123' || pwd === 'admin' || pwd === 'mahalaxmi123' || pwd === 'password123')
+    ) {
+      loginUser({
+        name: 'Mahalaxmi Administrator',
+        email: 'admin@mahalaxmi.com',
+        role: 'admin',
+        type: 'Store Administrator'
+      });
+      showToast('👑 Welcome Administrator! Redirecting to Admin Console...');
+      navigate('/admin');
+      return;
+    }
+
+    // Regular Customer Login
     loginUser({
       name: loginForm.identifier.split('@')[0] || 'Dhaval Dave',
       email: loginForm.identifier.includes('@') ? loginForm.identifier : 'customer@mahalaxmi.com',
@@ -94,6 +115,14 @@ export const LoginPage = () => {
       identifier: 'customer@mahalaxmi.com',
       password: 'password123'
     });
+  };
+
+  const fillAdminDemo = () => {
+    setLoginForm({
+      identifier: 'admin@mahalaxmi.com',
+      password: 'admin123'
+    });
+    showToast('Admin credentials filled! Click Sign In to open Admin Console.');
   };
 
   return (
@@ -283,6 +312,25 @@ export const LoginPage = () => {
                           <span>Sign In to Account</span>
                           <ArrowRight className="w-4 h-4" />
                         </button>
+
+                        {/* Admin Credentials Helper Card */}
+                        <div className="mt-4 p-3.5 rounded-2xl bg-indigo-50/80 border border-indigo-100 flex items-center justify-between text-xs">
+                          <div>
+                            <p className="font-bold text-indigo-950 flex items-center gap-1">
+                              <span>👑 Admin Credentials:</span>
+                            </p>
+                            <p className="text-[11px] text-slate-600 mt-0.5 font-mono">
+                              ID: <span className="font-bold text-indigo-900">admin@mahalaxmi.com</span> • Pass: <span className="font-bold text-indigo-900">admin123</span>
+                            </p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={fillAdminDemo}
+                            className="px-3 py-1.5 rounded-xl bg-white border border-indigo-200 text-indigo-700 hover:bg-indigo-600 hover:text-white font-bold text-[11px] shadow-2xs transition-all cursor-pointer"
+                          >
+                            ⚡ Fill Admin
+                          </button>
+                        </div>
                       </form>
                     )}
 
