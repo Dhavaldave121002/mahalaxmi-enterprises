@@ -83,13 +83,18 @@ export const AdminLayout = ({ children, activeTab, setActiveTab }) => {
             </button>
 
             {/* View Live Storefront */}
-            <Link
-              to="/"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-indigo hover:bg-brand-indigo-hover text-white transition-colors shadow-sm"
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/');
+                window.location.href = '/';
+              }}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors shadow-sm cursor-pointer"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               <span>View Storefront</span>
-            </Link>
+            </a>
           </div>
         </div>
       </header>
