@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const SLIDES = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1920&q=85',
+    image: '/images/hero_towels.jpg',
     title: 'Luxury Combed Cotton Towels & Bath Linens',
     subtitle: 'Direct Mill Rates • 100% Ring-Spun Cotton • Pan-India Loom Dispatch',
     link: '/collections/cotton-products'

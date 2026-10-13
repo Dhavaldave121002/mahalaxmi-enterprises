@@ -290,7 +290,7 @@ export const StoreProvider = ({ children }) => {
       discountPercent: Math.max(0, Math.round(((newProduct.mrp - newProduct.price) / (newProduct.mrp || 1)) * 100)),
       lowStockThreshold: Number(newProduct.lowStockThreshold) || 10,
       images: Array.isArray(newProduct.images) && newProduct.images.length > 0 ? newProduct.images : [
-        "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80"
       ]
     };
     setProducts((prev) => [productRecord, ...prev]);

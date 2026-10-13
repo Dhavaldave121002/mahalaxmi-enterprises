@@ -7,8 +7,8 @@ export const initialCategories = [
     name: "Home and Kitchen",
     accentColor: "#F59E0B",
     description: "Functional and durable culinary textiles, crafted for daily kitchen handling and elegant dining table presentation.",
-    bannerImage: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=1600&q=80",
-    image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=800&q=80",
+    bannerImage: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
     subcategories: ["Kitchen Towels", "Aprons", "Table Linen"],
     displayOrder: 1,
     featuredOnHome: true,
@@ -68,7 +68,7 @@ export const initialProducts = [
     lowStockThreshold: 10,
     images: [
       "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80"
     ],
     description: "Loomed from 100% premium unbleached cotton, these honeycomb waffle-weave kitchen towels offer superior water absorption and dry twice as fast as flat towels. Engineered for rigorous daily culinary handling.",
     fabric: "100% Ring-spun Cotton (380 GSM)",
@@ -128,7 +128,7 @@ export const initialProducts = [
     lowStockThreshold: 5,
     images: [
       "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80"
     ],
     description: "Classic hand-drawn hemstitch detailing crafted on pure cotton-linen textured fabric. Elevates both daily family dining and formal restaurant hospitality tables.",
     fabric: "80% Cotton, 20% Linen Blend",
@@ -252,7 +252,7 @@ export const initialProducts = [
     lowStockThreshold: 15,
     images: [
       "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80"
     ],
     description: "Woven in our certified Solapur & Coimbatore partner mills from extra-long staple combed Indian cotton. Crisp percale matte finish that stays cool in summer and softens with each wash.",
     fabric: "100% Long-Staple Combed Cotton (300 TC Percale)",
@@ -311,7 +311,7 @@ export const initialProducts = [
     stock: 50,
     lowStockThreshold: 10,
     images: [
-      "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=900&q=80"
     ],
     description: "Raw unbleached medium-weight cotton fabric directly off the powerloom. Ideal for apparel prototyping, upholstery lining, screen printing, and natural tie-dyeing.",
@@ -543,7 +543,7 @@ export const initialHomepageConfig = {
     secondaryCtaText: "Shop Best Sellers",
     secondaryCtaLink: "#best-sellers",
     trustLabel: "Wholesale & Retail",
-    bannerImage: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=1400&q=80"
+    bannerImage: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1400&q=80"
   },
   trustStrip: [
     {

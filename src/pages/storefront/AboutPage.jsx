@@ -45,7 +45,7 @@ export const AboutPage = () => {
             </div>
             <div className="rounded-2xl overflow-hidden shadow-premium aspect-[4/3] bg-slate-100 border border-slate-200">
               <img
-                src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
                 alt="Weaving Looms"
                 className="w-full h-full object-cover"
               />

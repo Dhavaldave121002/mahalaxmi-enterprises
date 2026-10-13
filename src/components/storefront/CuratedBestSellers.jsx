@@ -16,7 +16,7 @@ const FEATURED_BEST_SELLERS = [
     rating: 4.9,
     reviewCount: 156,
     stock: 50,
-    images: ["https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80"],
+    images: ["/images/hero_towels.jpg"],
     fabric: "100% Combed Cotton (500 GSM)",
     badgeType: "discount",
   },

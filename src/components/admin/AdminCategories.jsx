@@ -38,8 +38,8 @@ export const AdminCategories = () => {
       slug: '',
       accentColor: '#4F46E5',
       description: '',
-      image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=800&q=80',
-      bannerImage: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=1600&q=80',
+      image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80',
+      bannerImage: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1600&q=80',
       subcategories: 'General Essentials, Direct Mill Supplies',
       featuredOnHome: true
     });

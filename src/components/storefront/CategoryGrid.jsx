@@ -6,29 +6,29 @@ const CATEGORIES = [
     id: 'best-sellers',
     slug: 'all?sort=best-selling',
     title: 'BEST SELLERS',
-    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85',
-    alt: 'Luxury bedroom with quilt and pillows'
+    image: '/images/cat_bestsellers.jpg',
+    alt: 'Woman in beige robe beside luxury made bed'
   },
   {
     id: 'textile',
     slug: 'textile',
-    title: 'BEDDING & TEXTILES',
-    image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=85',
-    alt: 'Earth tone linen bed with pillows'
+    title: 'BEDDING',
+    image: '/images/cat_bedding.jpg',
+    alt: 'Earth tone olive and brown layered linen bed'
   },
   {
     id: 'household',
     slug: 'household',
-    title: 'PILLOWS + DUVET INSERTS',
-    image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=85',
-    alt: 'Plush white pillows and duvet on bed'
+    title: 'PILLOWS & DUVET INSERTS',
+    image: '/images/cat_pillows.jpg',
+    alt: 'Plush white goose down pillows and puffy duvet'
   },
   {
     id: 'cotton-products',
     slug: 'cotton-products',
-    title: 'TOWELS + ROBES',
-    image: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=900&q=85',
-    alt: 'Luxury bath towels and robes'
+    title: 'TOWELS & ROBES',
+    image: '/images/cat_robes.jpg',
+    alt: 'Woman in plush mauve robe with towel on head on balcony'
   }
 ];
 

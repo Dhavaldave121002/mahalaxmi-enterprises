@@ -67,7 +67,7 @@ export const AdminProducts = () => {
       packSize: 'Pack of 6',
       description: '',
       careInstructions: 'Machine wash warm with mild detergent.',
-      imageUrl: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80',
       isBestSeller: false,
       isFeatured: true,
       tier1Qty: 10,
@@ -140,7 +140,7 @@ export const AdminProducts = () => {
       packSize: formData.packSize,
       description: formData.description,
       careInstructions: formData.careInstructions,
-      images: [formData.imageUrl || 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=80'],
+      images: [formData.imageUrl || 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80'],
       isBestSeller: formData.isBestSeller,
       isFeatured: formData.isFeatured,
       bulkTiers
